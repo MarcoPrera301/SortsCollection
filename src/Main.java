@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public class Main {
 
-    private static final int[] SIZES = {10, 50, 100, 1000, 3000};
+    private static final int[] SIZES = {3000};
+    private static final int ITERATIONS = 10000;
 
     public static void main(String[] args) {
-        System.out.println("Adjunta VisualVM y presiona Enter para iniciar las pruebas");
+        System.out.println("Inicia el profiler y presiona Enter para comenzar las pruebas");
+        System.out.println("Cada sort se ejecutara " + ITERATIONS + " veces por tamanio");
         try { System.in.read(); } catch (Exception e) {}
 
         for (int size : SIZES) {
@@ -15,21 +17,21 @@ public class Main {
             String content = ReadFile.read();
             ArrayList<Integer> numbers = parseNumbers(content);
 
-            System.out.println("\nOrdenando " + size + " elementos");
+            System.out.println("\nOrdenando " + size + " elementos (" + ITERATIONS + " iteraciones)");
 
-            runGnomesort(new ArrayList<>(numbers));
+            runGnomesort(numbers);
             System.out.println("  Gnomesort completado");
 
-            runMergesort(new ArrayList<>(numbers));
+            runMergesort(numbers);
             System.out.println("  Mergesort completado");
 
-            runQuicksort(new ArrayList<>(numbers));
+            runQuicksort(numbers);
             System.out.println("  Quicksort completado");
 
-            runRadixSort(new ArrayList<>(numbers));
+            runRadixSort(numbers);
             System.out.println("  RadixSort completado");
 
-            runTimsort(new ArrayList<>(numbers));
+            runTimsort(numbers);
             System.out.println("  Timsort completado");
         }
 
@@ -48,28 +50,38 @@ public class Main {
         return numbers;
     }
 
-    private static void runGnomesort(ArrayList<Integer> list) {
+    private static void runGnomesort(ArrayList<Integer> original) {
         Gnomesort<Integer> sorter = new Gnomesort<>();
-        sorter.sort(list);
+        for (int i = 0; i < ITERATIONS; i++) {
+            sorter.sort(new ArrayList<>(original));
+        }
     }
 
-    private static void runMergesort(ArrayList<Integer> list) {
+    private static void runMergesort(ArrayList<Integer> original) {
         Mergesort<Integer> sorter = new Mergesort<>();
-        sorter.sort(list);
+        for (int i = 0; i < ITERATIONS; i++) {
+            sorter.sort(new ArrayList<>(original));
+        }
     }
 
-    private static void runQuicksort(ArrayList<Integer> list) {
+    private static void runQuicksort(ArrayList<Integer> original) {
         Quicksort<Integer> sorter = new Quicksort<>();
-        sorter.sort(list);
+        for (int i = 0; i < ITERATIONS; i++) {
+            sorter.sort(new ArrayList<>(original));
+        }
     }
 
-    private static void runRadixSort(ArrayList<Integer> list) {
+    private static void runRadixSort(ArrayList<Integer> original) {
         RadixSort sorter = new RadixSort();
-        sorter.sort(list);
+        for (int i = 0; i < ITERATIONS; i++) {
+            sorter.sort(new ArrayList<>(original));
+        }
     }
 
-    private static void runTimsort(ArrayList<Integer> list) {
+    private static void runTimsort(ArrayList<Integer> original) {
         Timsort<Integer> sorter = new Timsort<>();
-        sorter.sort(list);
+        for (int i = 0; i < ITERATIONS; i++) {
+            sorter.sort(new ArrayList<>(original));
+        }
     }
 }

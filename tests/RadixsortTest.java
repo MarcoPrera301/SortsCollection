@@ -1,5 +1,5 @@
 package tests;
-import src.Radixsort;
+import src.RadixSort;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class RadixsortTest {
         list.add(2);
         list.add(66);
 
-        Radixsort sort = new Radixsort();
+        RadixSort sort = new RadixSort();
         sort.sort(list);
 
         assertEquals(Integer.valueOf(2), list.get(0));

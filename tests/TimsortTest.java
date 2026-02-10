@@ -1,4 +1,5 @@
 package tests;
+import src.Timsort;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

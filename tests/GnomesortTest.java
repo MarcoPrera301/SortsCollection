@@ -1,5 +1,5 @@
 package tests;
-
+import src.Gnomesort;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
